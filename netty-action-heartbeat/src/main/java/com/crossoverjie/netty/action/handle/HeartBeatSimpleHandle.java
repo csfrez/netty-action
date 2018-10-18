@@ -44,12 +44,13 @@ public class HeartBeatSimpleHandle extends SimpleChannelInboundHandler<CustomPro
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-
+    	NioSocketChannel nsc = (NioSocketChannel) ctx.channel();
+    	LOGGER.info("NioSocketChannel={}", nsc);
         if (evt instanceof IdleStateEvent){
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt ;
 
             if (idleStateEvent.state() == IdleState.READER_IDLE){
-                LOGGER.info("已经5秒没有收到信息！");
+                //LOGGER.info("已经5秒没有收到信息！");
                 //向客户端发送消息
                 ctx.writeAndFlush(HEART_BEAT).addListener(ChannelFutureListener.CLOSE_ON_FAILURE) ;
             }

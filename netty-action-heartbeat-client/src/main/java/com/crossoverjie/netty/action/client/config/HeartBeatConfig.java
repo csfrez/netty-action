@@ -22,6 +22,6 @@ public class HeartBeatConfig {
 
     @Bean(value = "heartBeat")
     public CustomProtocol heartBeat(){
-        return new CustomProtocol(id,"ping") ;
+        return new CustomProtocol(id, "ping") ;
     }
 }

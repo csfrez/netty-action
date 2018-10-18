@@ -33,7 +33,7 @@ public class EchoClientHandle extends SimpleChannelInboundHandler<ByteBuf> {
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt ;
 
             if (idleStateEvent.state() == IdleState.WRITER_IDLE){
-                LOGGER.info("已经 10 秒没有发送信息！");
+                //LOGGER.info("已经 10 秒没有发送信息！");
                 //向服务端发送消息
                 CustomProtocol heartBeat = SpringBeanFactory.getBean("heartBeat", CustomProtocol.class);
                 ctx.writeAndFlush(heartBeat).addListener(ChannelFutureListener.CLOSE_ON_FAILURE) ;
